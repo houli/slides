@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="../css/reveal.css">
-    <link rel="stylesheet" href="../css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="../css/theme/white.css" id="theme">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="../lib/css/zenburn.css">
@@ -41,10 +41,172 @@
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
+          <h1>Learn to Code with</h1>
+          <img height="300" src="images/ducss-logo.png" alt="DUCSS Logo">
           <h1>Week 1</h1>
+          <p><em>Eoin Houlihan</em></p>
+        </section>
+
+        <section>
+          <h2>What is programming?</h2>
+          <img class="fragment" height="300" alt="Coffee!!" src="images/urban.png">
+          <p class="fragment">0s and 1s?</p>
+          <p class="fragment">Bending the computer to your will?</p>
+          <p class="fragment">Instructions for a stupid machine?</p>
+        </section>
+
+        <section>
+          <h2>Your new best friend</h2>
+          <div class="fragment">
+            <img src="images/ruby-logo.png" alt="Ruby Logo">
+            <a href="https://ruby-lang.org"><p>Ruby!</p></a>
+          </div>
+        </section>
+
+        <section>
+          <h2>What does it look like?</h2>
+          <pre class="fragment"><code class="ruby" data-trim>
+def fibonacci(n)
+  return n if (0..1).include? n
+  fibonacci(n - 1) + fibonacci(n - 2)
+end
+
+puts fibonacci(40)
+          </code></pre>
           <p>
-            Test
+            <span class="fragment">Result?</span><span class="fragment"> 102,334,155</span>
           </p>
+          <p class="fragment"><a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci sequence</a></p>
+          <p class="fragment">0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55...</p>
+          <p class="fragment">Not very efficient...</p>
+        </section>
+
+        <section>
+          <h2>Cloud9 IDE</h2>
+          <p class="fragment">Our coding environment</p>
+          <img class="fragment" height="400" src="images/cloud9.png" alt="Cloud9 IDE">
+          <p class="fragment">Demo time!</p>
+        </section>
+
+        <section>
+          <h2>Running our code</h2>
+          <p class="fragment">Two ways to run our code</p>
+          <ol>
+            <li class="fragment">Ruby interpreter (Run button on Cloud9)</li>
+            <li class="fragment">
+              IRB (Interactive Ruby)
+            </li>
+          </ol>
+          <img class="fragment" src="images/irb.png" alt="IRB">
+        </section>
+
+
+        <section>
+          <h2>Working with numbers</h2>
+          <pre class="fragment" style="font-size: 0.45em"><code class="ruby" data-trim>
+2 + 3
+# 5 (Addition)
+
+6 - 4
+# 2 (Subtraction)
+
+2 * 6
+# 12 (Multiplication)
+
+3 / 4
+# 0 ?????? (Integer division)
+
+3.0 / 4.0
+# 0.75 (Floating point division)
+
+4 ** 2
+# 16 (Power)
+
+23 % 5
+# 3 (Modulo)
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Names and Variables</h2>
+          <p class="fragment">Allow us to save values</p>
+          <p class="fragment">We can give descriptive names to complicated expressions</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+my_weight = 80
+my_height = 1.6
+my_bmi = my_weight / (my_height ** 2)
+# 31.249999999999993
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Strings and text</h2>
+          <p class="fragment">Actual useful output!</p>
+          <p class="fragment">Make the computer say things</p>
+          <p class="fragment">We use <code>puts</code> to put a string on the screen.</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+my_name = "Eoin"
+my_surname = "Houlihan"
+puts "Hello #{my_name} #{my_surname}."
+reversed_name = "#{my_surname}, #{my_name}"
+puts "My reversed name is #{reversed_name}."
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Reading in text</h2>
+          <p class="fragment">Actual useful input!</p>
+          <p class="fragment">We'll use the <code>gets</code> function to "get" a string from the user</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+puts "What is your name?"
+name = gets
+puts "Hello #{name}. How old are you?"
+age = gets
+puts "Ah, so you're #{age}."
+          </code></pre>
+          <img class="fragment" height="300" alt="Getting input" src="images/gets.png">
+        </section>
+
+
+        <section>
+          <h2>Let's fix that</h2>
+          <p class="fragment"><code>chomp</code> removes extra newlines</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+puts "What is your name?"
+name = gets.chomp
+puts "Hello #{name}. How old are you?"
+age = gets.chomp
+puts "Ah, so you're #{age}."
+          </code></pre>
+          <div class="fragment">
+            <img height="200" alt="Fixed" src="images/gets2.png">
+            <p>Much better!</p>
+          </div>
+        </section>
+
+        <section>
+          <h3>The Truth, The Whole Truth and Nothing but the Truth</h3>
+          <p class="fragment"><code>true</code> and <code>false</code> allows us to make decisions.</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Your other best friend</h2>
+          <a href="https://google.com"><img class="fragment" src="images/google-logo.png" alt="Google Logo"></a>
+          <a href="https://stackoverflow.com"><p class="fragment">Stack Overflow</p></a>
+        </section>
+
+        <section>
+          <h2>Your task for next week</h2>
+          <p># TODO</p>
+          <p>Any questions, email me! <a href="mailto:ehoulih@tcd.ie">ehoulih@tcd.ie</a></p>
+        </section>
+
+        <section>
+          <h2>See you next week!</h2>
+          <p>Slides are available online -> <a href="https://houli.github.io/slides">https://houli.github.io/slides</a></p>
+          <video class="fragment" height="500" src="images/bfish.mp4" autoplay loop></video>
         </section>
       </div>
 
@@ -61,7 +223,7 @@
         controls: true,
         progress: true,
         history: true,
-        center: true,
+        center: false,
 
         transition: 'slide', // none/fade/slide/convex/concave/zoom
 
