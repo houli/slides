@@ -1,9 +1,185 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
   <head>
-    <title>Slides</title>
+    <meta charset="utf-8">
+
+    <title>Week 2 Slides</title>
+
+    <meta name="description" content="Week 2">
+    <meta name="author" content="Eoin Houlihan">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/white.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script></script>
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+    <!--[if lt IE 9]>
+    <script src="../lib/js/html5shiv.js"></script>
+    <![endif]-->
   </head>
+
   <body>
-    <h1>Coming soon!</h1>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <section>
+          <h1>Learn to Code with</h1>
+          <img height="300" src="../sharedimages/ducss-logo.png" alt="DUCSS Logo">
+          <h1>Week 2</h1>
+          <p><em>Eoin Houlihan</em></p>
+        </section>
+
+        <section>
+          <h1>Thank you!</h1>
+          <p class="fragment">Lots of really good code sent to me last week!</p>
+        </section>
+
+        <section>
+          <h2>Arrays and Lists</h2>
+          <p class="fragment">Arrays let us create lists of data</p>
+          <p class="fragment">We use indexing to access the individual parts of the list</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+names = ["eoin", "emmet", "laura", "john"]
+puts names[0]
+# eoin
+puts names[2]
+# laura
+puts names[1..3]
+# emmet, laura, john
+          </code></pre>
+          <img class="fragment" height="200" src="images/array-boxes.svg" alt="Array boxes">
+        </section>
+
+        <section>
+          <h2>Using <code style="text-transform: none">each</code></h2>
+          <p class="fragment"><code>each</code> lets us run the same code for each item in our array</p>
+          <p class="fragment">The code inside <code>do/end</code> is called a block.</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+nums = [12, 30, 3, 5, 8, 1, 4]
+nums.each do |number|
+  if number % 2 == 0
+    puts "#{number} is even."
+  else
+    puts "#{number} is odd."
+  end
+end
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Using <code style="text-transform: none">each_with_index</code>
+          <pre class="fragment"><code class="ruby" data-trim>
+questions = ["Capital of Ireland?", "Lbs in a stone?", "3.0 divided by 4.0?"]
+answers = ["Dublin", 14, 0.75]
+questions.each_with_index do |question, index|
+  puts "#{index}: #{question} ANSWER: #{answers[index]}"
+end
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Splitting up input into arrays</h2>
+          <p class="fragment">We'll use <code>split</code> to make an array.</p>
+          <h3 class="fragment">Example: Average of a list of entered numbers</h3>
+
+          <pre class="fragment"><code class="ruby" data-trim>
+puts "Enter a list of numbers separated by commas"
+input = gets.chomp
+numbers = input.split(",")
+
+total = 0.0
+numbers.each do |number|
+  total += number.to_f
+end
+puts "Average is #{total / numbers.length}"
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Hashes</h2>
+          <p class="fragment">Used to group associated data</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+first_q = { question: "Capital of Ireland?", answer: "Dublin" }
+puts first_q[:question]
+# Capital of Ireland?
+puts first_q[:answer]
+# Dublin
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Redoing our quiz question example</h2>
+          <pre class="fragment"><code class="ruby" data-trim>
+quiz = [{ question: "Capital of Ireland?", answer: "Dublin" },
+        { question: "Lbs in a stone?", answer: 14 },
+        { question: "3.0 divided by 4.0?", answer: 0.75 }]
+
+quiz.each_with_index do |q, index|
+  puts "#{index}: #{q[:question]} ANSWER: #{q[:answer]}"
+end
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Your task for next week</h2>
+          <p class="fragment">#TODO</p>
+          <p class="fragment">Any questions, email me! <a href="mailto:ehoulih@tcd.ie">ehoulih@tcd.ie</a></p>
+        </section>
+
+        <section>
+          <h2>See you next week!</h2>
+          <p>Slides are available online -> <a href="https://houli.github.io/slides">https://houli.github.io/slides</a></p>
+          <video class="fragment" height="500" src="images/bfishcarlton.mp4" autoplay loop></video>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
   </body>
 </html>
