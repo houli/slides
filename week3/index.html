@@ -1,9 +1,192 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
   <head>
-    <title>Slides</title>
+    <meta charset="utf-8">
+
+    <title>Week 3 Slides</title>
+
+    <meta name="description" content="Week 3">
+    <meta name="author" content="Eoin Houlihan">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/white.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../lib/js/html5shiv.js"></script>
+    <![endif]-->
   </head>
+
   <body>
-    <h1>Coming soon!</h1>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <section>
+          <h1>Learn to Code with</h1>
+          <img height="300" src="../sharedimages/ducss-logo.png" alt="DUCSS Logo">
+          <h1>Week 3</h1>
+          <p><em>Eoin Houlihan</em></p>
+        </section>
+
+        <section>
+          <h1>Thank you!</h1>
+          <p class="fragment">Lots of really good code sent to me last week!</p>
+          <p class="fragment">I didn't just copy this slide over from last week...</p>
+        </section>
+
+
+        <section>
+          <h2>Functions in Ruby</h2>
+          <p class="fragment">We've already been using functions like <code>gets</code> and <code>puts</code></p>
+          <p class="fragment">Functions let us package up reusable bits of code</p>
+          <p class="fragment">Also give us meaningful names to sections of code much like variables give us meaningful names for our data</p>
+        </section>
+
+        <section>
+          <h2>Defining our own functions</h2>
+          <p class="fragment">Functions are defined using the <code>def</code> keyword</p>
+          <p class="fragment">Their lists of arguments are put in parantheses</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+def number_to_month(number)
+  MONTHS[number - 1]
+end
+
+def is_even?(number)
+  return number % 2 == 0
+end
+
+puts is_even? 5
+# false
+puts(is_even?(6))
+# true
+puts number_to_month 11
+# Nov
+          </code></pre>
+
+          <p class="fragment">As you can see the parantheses are optional in some cases</p>
+        </section>
+
+        <section>
+          <h2>Combining functions</h2>
+          <p class="fragment">We've seen before how we can chain multiple functions in one line</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+def is_even?(number)
+  return number % 2 == 0
+end
+
+puts "Enter a value to see if it is even"
+puts(is_even?(gets().chomp().to_i()))
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Solution To Last Week's Problem</h2>
+          <p class="fragment">We'll take a look at a solution to the date converter program from last week.</p>
+          <p class="fragment">The code has been written to take advantage of functions</p>
+          <p class="fragment">Available to download on the <a href="../samples">sample code page</a></p>
+        </section>
+
+        <section>
+          <h2>Exercise Time</h2>
+          <p class="fragment">Let's write a function</p>
+        </section>
+
+        <section>
+          <h2>Default Arguments</h2>
+          <p class="fragment">We can provide a default value for an argument</p>
+          <p class="fragment">Lets us call the function without providing a value for that argument</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+def greet(greeting, name="John")
+  puts "#{greeting} #{name}"
+end
+
+greet("Hello")
+# Hello John
+
+greet("Hi", "Mary")
+# Hi Mary
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Recursive functions</h2>
+          <p class="fragment">Functions can also call themselves</p>
+          <p class="fragment">Our Fibonacci example from the first week</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+def fibonacci(n)
+  return n if (0..1).include? n
+  fibonacci(n - 1) + fibonacci(n - 2)
+end
+
+puts fibonacci(10)
+          </code></pre>
+          <p class="fragment">Read up on recursive functions if you're feeling adventurous</p>
+        </section>
+
+
+        <section>
+          <h2>Your task for next week</h2>
+          <p class="fragment">#TODO</p>
+          <p class="fragment">Any questions, email me! <a href="mailto:ehoulih@tcd.ie">ehoulih@tcd.ie</a></p>
+        </section>
+
+        <section>
+          <h2>See you next week!</h2>
+          <p>Slides are available online -> <a href="https://houli.github.io/slides">https://houli.github.io/slides</a></p>
+          <img class="fragment" height="500" src="images/bfishhula.jpg" alt="Business Fish Hula"></video>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
   </body>
 </html>
