@@ -88,6 +88,11 @@ puts number_to_month 11
         </section>
 
         <section>
+          <h2>Exercise Time</h2>
+          <p class="fragment">Create a function that prints out your name.</p>
+        </section>
+
+        <section>
           <h2>Combining functions</h2>
           <p class="fragment">We've seen before how we can chain multiple functions in one line</p>
           <pre class="fragment"><code class="ruby" data-trim>
@@ -107,9 +112,20 @@ puts(is_even?(gets().chomp().to_i()))
           <p class="fragment">Available to download on the <a href="../samples">sample code page</a></p>
         </section>
 
-        <section>
+         <section>
           <h2>Exercise Time</h2>
-          <p class="fragment">Let's write a function</p>
+          <p class="fragment">Let's write a function to check an answer to a quiz question and print whether it was correct</p>
+          <p class="fragment">Some code to get you started</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+QUIZ = [{ question: "Capital of Ireland?", answer: "Dublin" },
+        { question: "Lbs in a stone?", answer: "14" }]
+
+puts QUIZ[0][:question]
+
+answer = gets.chomp
+
+check_answer(QUIZ[0], answer)
+          </code></pre>
         </section>
 
         <section>
@@ -147,7 +163,14 @@ puts fibonacci(10)
 
         <section>
           <h2>Your task for next week</h2>
-          <p class="fragment">#TODO</p>
+          <p class="fragment">Building on from the sample code, write a program using functions to check an array of dates in DD/MM/YYYY and say whether each is valid or not</p>
+          <pre class="fragment"><code class="ruby" data-trim>
+dates = ["12/04/2015", "32/03/2014", "03/01/1990"]
+check_dates(dates)
+# 12/04/2015 is valid
+# 32/03/2014 is invalid
+# 03/01/1990 is valid
+          </code></pre>
           <p class="fragment">Any questions, email me! <a href="mailto:ehoulih@tcd.ie">ehoulih@tcd.ie</a></p>
         </section>
 
