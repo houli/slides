@@ -1,9 +1,218 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
   <head>
-    <title>Slides</title>
+    <meta charset="utf-8">
+
+    <title>Week 5 Slides</title>
+
+    <meta name="description" content="Week 5">
+    <meta name="author" content="Eoin Houlihan">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/white.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../lib/js/html5shiv.js"></script>
+    <![endif]-->
   </head>
+
   <body>
-    <h1>Coming soon!</h1>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <section>
+          <h1>Learn to Code with</h1>
+          <img height="300" src="../sharedimages/ducss-logo.png" alt="DUCSS Logo">
+          <h1>Week 5 (Final Week!)</h1>
+          <p><em>Eoin Houlihan</em></p>
+        </section>
+
+        <section>
+          <h1>Thank you!</h1>
+          <p class="fragment">Lots of really good code sent to me last week!</p>
+          <p class="fragment">OK, I copied this one over from last week's slides</p>
+        </section>
+
+        <section>
+          <h2>Solution To Last Week's Problem</h2>
+          <p class="fragment">We'll take a look at a solution to the web server task from last week.</p>
+          <p class="fragment">As always, it's on the <a href="../samples">sample code page</a></p>
+        </section>
+
+        <section>
+          <h2>Sending data to a server</h2>
+          <p class="fragment">Last week we saw how the browser asked for data with a GET request</p>
+          <p class="fragment">We used URL parameters to get different responses</p>
+          <p class="fragment">This week we'll use POST to send data to the server</p>
+        </section>
+
+        <section>
+          <h2>Illustrated Example</h2>
+          <p class="fragment">Let's take a look at what <code>POST</code> is</p>
+          <img class="fragment" src="images/post.jpg" alt="POST Request">
+        </section>
+
+        <section>
+          <h2>HTML Forms</h2>
+          <p class="fragment">HTML has built-in support for sending data from a page</p>
+          <p class="fragment">The <code>&lt;form&gt;</code> tag allows us to define data to POST</p>
+          <p class="fragment">Also defines where we will send the data to</p>
+        </section>
+
+        <section>
+          <h2>Form example</h2>
+          <pre><code class="html" data-trim>
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;p&gt;&lt;%= question %&gt;&lt;/p&gt;
+    &lt;form action="/question/&lt;%= index %&gt;" method="POST"&gt;
+      &lt;input type="text" name="answer"&gt;
+      &lt;input type="submit" value="Submit"&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>The server code</h2>
+          <p class="fragment">The form will POST to <code>/question/:id</code></p>
+          <p class="fragment">We pass variables to the template using <code>locals</code></p>
+          <pre class="fragment"><code class="ruby" data-trim style="font-size: 0.8em">
+require "sinatra"
+require "erb"
+set :port, ENV["PORT"]
+set :bind, ENV["IP"]
+
+QUIZ = [{ question: "Capital of Ireland?", answer: "Dublin" },
+        { question: "Lbs in a stone?", answer: "14" }]
+
+get "/question/:id" do
+  index = params[:id].to_i
+  if QUIZ[index]
+    erb :quiz, locals: { question: QUIZ[index][:question], index: index }
+  else
+    status 404
+    "Not found"
+  end
+end
+
+post "/question/:id" do
+  index = params[:id].to_i
+  if params[:answer] == QUIZ[index][:answer]
+    "Correct!"
+  else
+    "Incorrect!"
+  end
+end
+          </code></pre>
+        </section>
+
+
+        <section>
+          <h2>Improving the server code</h2>
+          <p class="fragment">Redirects from the home page to the first question</p>
+          <p class="fragment">Redirects to the next question when you get it right</p>
+          <pre class="fragment"><code class="ruby" data-trim style="font-size: 0.8em">
+require "sinatra"
+require "erb"
+set :port, ENV["PORT"]
+set :bind, ENV["IP"]
+
+QUIZ = [{ question: "Capital of Ireland?", answer: "Dublin" },
+        { question: "Lbs in a stone?", answer: "14" }]
+
+get "/" do
+  redirect to "/question/0"
+end
+
+get "/question/:id" do
+  index = params[:id].to_i
+  if QUIZ[index]
+    erb :quiz, locals: { question: QUIZ[index][:question], index: index }
+  else
+    status 404
+    "Not found"
+  end
+end
+
+post "/question/:id" do
+  index = params[:id].to_i
+  if params[:answer] == QUIZ[index][:answer]
+    if QUIZ[index + 1]
+      redirect to "/question/#{index + 1}"
+    else
+      "You got them all right!"
+    end
+  else
+    redirect to "/question/#{index}"
+  end
+end
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Your task for next week</h2>
+          <p class="fragment">There is none!</p>
+          <p class="fragment">Well, there is...</p>
+          <p class="fragment">Make something awesome using your new Ruby skills!</p>
+          <p class="fragment">Any questions, email me! <a href="mailto:ehoulih@tcd.ie">ehoulih@tcd.ie</a></p>
+        </section>
+
+        <section>
+          <h1>Thanks for coming!</h1>
+          <img class="fragment" height="500" src="images/bfishgangsta.png" alt="Business Fish Gangsta"></video>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true },
+          { src: '../plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
   </body>
 </html>
